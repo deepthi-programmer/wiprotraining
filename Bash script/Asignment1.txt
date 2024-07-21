@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Name of the file to check
+filename="myfile.txt"
+
+# Check if the file exists
+if [ -e "$filename" ]; then
+    echo "File exists"
+else
+    echo "File not found"
+fi
+Output:
+File not found

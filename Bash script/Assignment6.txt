@@ -1,0 +1,25 @@
+2024-05-25 10:00:00 INFO Starting the application
+2024-05-25 10:01:00 ERROR Unable to connect to database
+2024-05-25 10:02:00 WARN Low disk space
+2024-05-25 10:03:00 ERROR Disk space critically low
+2024-05-25 10:04:00 INFO Application running smoothly
+#!/bin/bash
+
+# Define the log file
+logfile="logfile.txt"
+
+# Check if the log file exists
+if [ ! -f "$logfile" ]; then
+    echo "Log file not found: $logfile"
+    exit 1
+fi
+
+# Use grep to extract lines containing "ERROR"
+# Use awk to print the date, time, and error message
+grep "ERROR" "$logfile" | awk '{print $1, $2, $3, $4, $5, $6, $7}' | sed 's/ERROR: //' | while read -r line ; do
+    # Use sed to further process the data if needed
+    echo "$line"
+done
+Output:
+2024-05-25 10:01:00 Unable to connect to database
+2024-05-25 10:03:00 Disk space critically low

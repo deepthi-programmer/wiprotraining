@@ -1,0 +1,29 @@
+#!/bin/bash
+
+while true; do
+    # Prompt the user to enter a number
+    echo -n "Enter a number (enter 0 to exit): "
+    read number
+    
+    # Check if the number is 0, if so, exit the loop
+    if [ "$number" -eq 0 ]; then
+        echo "Exiting..."
+        break
+    fi
+    
+    # Check if the number is odd or even
+    if [ $((number % 2)) -eq 0 ]; then
+        echo "The number $number is even."
+    else
+        echo "The number $number is odd."
+    fi
+done
+Output:
+Enter a number (enter 0 to exit): 5
+The number 5 is odd.
+Enter a number (enter 0 to exit): 10
+The number 10 is even.
+Enter a number (enter 0 to exit): 3
+The number 3 is odd.
+Enter a number (enter 0 to exit): 0
+Exiting...

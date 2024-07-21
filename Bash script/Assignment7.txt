@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Define the filenames
+input_file="input.txt"
+output_file="output.txt"
+
+# Define the text to replace and the new text
+old_text="old_text"
+new_text="new_text"
+
+# Perform the replacement using sed and output to a new file
+sed "s/$old_text/$new_text/g" "$input_file" > "$output_file"
+
+echo "Replacement complete. Check $output_file for the result."

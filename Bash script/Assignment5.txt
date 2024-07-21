@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Enable debugging mode if the first argument is "debug"
+DEBUG_MODE=false
+if [ "$1" == "debug" ]; then
+    DEBUG_MODE=true
+    set -x  # Enable shell debugging
+fi
+
+# Function to print debug messages
+debug() {
+    if $DEBUG_MODE; then
+        echo "DEBUG: $1"
+    fi
+}
+
+# Create the directory named TestDir if it does not exist
+if ! mkdir TestDir 2>/dev/null; then
+    if [ -d "TestDir" ]; then
+        echo "Directory 'TestDir' already exists."
+    else
+        echo "Error: Failed to create directory 'TestDir'. Check your permissions."
+        exit 1
+    fi
+else
+    debug "Directory 'TestDir' created successfully."
+fi
+
+# Change to the TestDir directory
+if ! cd TestDir 2>/dev/null; then
+    echo "Error: Failed to change to directory 'TestDir'. Check your permissions."
+    exit 1
+fi
+debug "Changed to directory 'TestDir'."
+
+# Loop to create 10 files
+for i in {1..10}; do
+    filename="File$i.txt"
+    if echo "$filename" > "$filename"; then
+        debug "Created file '$filename' with its filename as content."
+    else
+        echo "Error: Failed to create file '$filename'. Check your permissions."
+        exit 1
+    fi
+done
+
+echo "Created 10 files in TestDir with their filenames as content."
+
+# Disable debugging mode if it was enabled
+if $DEBUG_MODE; then
+    set +x  # Disable shell debugging
+fi
