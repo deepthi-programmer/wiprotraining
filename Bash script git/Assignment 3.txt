@@ -1,0 +1,16 @@
+Ensure you are on the 'main' branch:
+git checkout main
+Create a new branch named 'hotfix':
+git checkout -b hotfix
+Make the necessary fixes in the 'hotfix' branch. Edit your files to resolve the issue.
+
+Add the changes to the staging area:
+git add .
+Commit the changes:
+git commit -m "Fixed issue in hotfix branch"
+Switch back to the 'main' branch:
+git checkout main
+Merge the 'hotfix' branch into the 'main' branch:
+git merge hotfix
+After ensuring the merge is successful and the issue is resolved, you can optionally delete the 'hotfix' branch:
+git branch -d hotfix
